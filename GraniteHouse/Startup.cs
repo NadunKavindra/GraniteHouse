@@ -41,6 +41,20 @@ namespace GraniteHouse
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+            //CSRF prevention
+            //Automatically validating all appropriate actions 
+            /*
+             * ASP.NET Core provides another attribute for just such a use, 
+             * the [AutoValidateAntiForgeryToken] attribute. 
+             * This works identically to the [ValidateAntiForgeryToken] attribute, 
+             * except that it ignores "safe" methods like GET and HEAD.
+             */
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
