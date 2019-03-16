@@ -4,14 +4,16 @@ using GraniteHouse.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GraniteHouse.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190312141215_AddProductsModel")]
+    partial class AddProductsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,13 +39,15 @@ namespace GraniteHouse.Data.Migrations
 
                     b.Property<int>("SpecialTagsId");
 
+                    b.Property<int>("SpesialTagsId");
+
                     b.Property<string>("shadeColor");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductTypeId");
 
-                    b.HasIndex("SpecialTagsId");
+                    b.HasIndex("SpesialTagsId");
 
                     b.ToTable("Products");
                 });
@@ -243,14 +247,14 @@ namespace GraniteHouse.Data.Migrations
 
             modelBuilder.Entity("GraniteHouse.Models.Products", b =>
                 {
-                    b.HasOne("GraniteHouse.Models.ProductTypes", "ProductTypes")
+                    b.HasOne("GraniteHouse.Models.ProductTypes", "productTypes")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("GraniteHouse.Models.SpecialTags", "SpecialTags")
+                    b.HasOne("GraniteHouse.Models.SpecialTags", "specialTags")
                         .WithMany()
-                        .HasForeignKey("SpecialTagsId")
+                        .HasForeignKey("SpesialTagsId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
