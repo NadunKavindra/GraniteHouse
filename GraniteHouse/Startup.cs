@@ -42,6 +42,15 @@ namespace GraniteHouse
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            // Inject session to preserve user data and app state between request
+            // Session and app state in ASP.NET Core Microsoft Doc.
+            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-2.2
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+            });
+
 
             //CSRF prevention
             //Automatically validating all appropriate actions 
@@ -76,7 +85,8 @@ namespace GraniteHouse
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            //for use session 
+            app.UseSession();
             
             app.UseMvc(routes =>
             {
