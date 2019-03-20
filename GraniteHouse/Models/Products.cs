@@ -19,6 +19,7 @@ namespace GraniteHouse.Models
 
         public string Image { get; set; }
 
+        [Display(Name = "Shade Color")]
         public string shadeColor { get; set; }
 
 
