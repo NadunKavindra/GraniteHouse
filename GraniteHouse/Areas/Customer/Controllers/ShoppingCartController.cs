@@ -37,7 +37,7 @@ namespace GraniteHouse.Areas.Customer.Controllers
         {
             List<int> lstShoppingCart = HttpContext.Session.Get<List<int>>("ssShoppingCart");
 
-            if(lstShoppingCart.Count > 0)
+            if(lstShoppingCart != null && lstShoppingCart.Count > 0)
             {
                 foreach(int cartItem in lstShoppingCart)
                 {
